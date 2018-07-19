@@ -8,7 +8,7 @@
     "reset": "rm -rf node_modules && yarn",
     "open": "open http://localhost:6060",
     "prepush": "yarn lint && yarn test --coverage",
-    "precommit": "bin/check_code && bin/todo_list",
+    "precommit": "bin/check_code && bin/todo_list && yarn test --coverage --changedSince=master",
     "start": "yarn && yarn dev",
     "dev": "yarn styleguide:build && yarn run styleguide",
     "stylin": "yarn install && yarn start & yarn run open",
