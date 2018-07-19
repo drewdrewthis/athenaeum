@@ -1,3 +1,11 @@
+- [ ] **TODO: Find a better way to type check here.** : ./coverage/athenaeum/src/atoms/Layout/utils.js.html
+- [ ] **TODO: Consider adding a noscript tag to handle a situation where lazysizes doesn't work.** : ./coverage/athenaeum/src/atoms/Img/index.js.html
+- [ ] **TODO: Remove 'a' prop as an option from component** : ./coverage/athenaeum/src/atoms/Text/index.js.html
+- [ ] **TODO: Consider adding an html sanitizer** : ./coverage/athenaeum/src/atoms/Text/index.js.html
+- [ ] **TODO: Find a better way to type check here.** : ./coverage/lcov-report/athenaeum/src/atoms/Layout/utils.js.html
+- [ ] **TODO: Consider adding a noscript tag to handle a situation where lazysizes doesn't work.** : ./coverage/lcov-report/athenaeum/src/atoms/Img/index.js.html
+- [ ] **TODO: Remove 'a' prop as an option from component** : ./coverage/lcov-report/athenaeum/src/atoms/Text/index.js.html
+- [ ] **TODO: Consider adding an html sanitizer** : ./coverage/lcov-report/athenaeum/src/atoms/Text/index.js.html
 - [ ] **TODO: Find a better way to type check here.** : ./src/atoms/Layout/utils.js
 - [ ] **TODO: Consider adding a noscript tag to handle a situation where lazysizes doesn't work.** : ./src/atoms/Img/index.js
 - [ ] **TODO: Remove 'a' prop as an option from component** : ./src/atoms/Text/index.js
