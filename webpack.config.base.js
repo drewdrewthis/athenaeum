@@ -1,7 +1,7 @@
 process.traceDeprecation = true;
 
 const path = require('path');
-const ExtractTextPlugin = require( 'extract-text-webpack-plugin' );
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const postCSSConfig = require('./postcss.config.js');
 const get = require('lodash/get');
@@ -43,39 +43,37 @@ const baseRules = modulesName => [
   },
   {
     test: /\.scss$/,
-    use: ExtractTextPlugin.extract({
-      fallback: 'style-loader',
-      use: [
-        {
-          loader: 'css-loader',
-          options: {
-            modules: true,
-            importLoaders: 3,
-            localIdentName: cssModulesName(modulesName),
-            sourceMap: !isProd,
-            minimize: !!isProd
-          }
-        },
-        {
-          loader: 'postcss-loader?parser=postcss-scss',
-          options: {
-            postCSSConfig
-          }
-        },
-        {
-          loader: 'resolve-url-loader'
-        },
-        {
-          loader: 'sass-loader',
-          options: {
-            sourceMap: !isProd,
-            sourceComments: !isProd,
-            includePaths: [ baseDir ],
-            data: "@import 'assets/stylesheets/global';"
-          }
+    use: [
+      MiniCssExtractPlugin.loader,
+      {
+        loader: 'css-loader',
+        options: {
+          modules: true,
+          importLoaders: 3,
+          localIdentName: cssModulesName(modulesName),
+          sourceMap: !isProd,
+          minimize: !!isProd
         }
-      ]
-    })
+      },
+      {
+        loader: 'postcss-loader?parser=postcss-scss',
+        options: {
+          postCSSConfig
+        }
+      },
+      {
+        loader: 'resolve-url-loader'
+      },
+      {
+        loader: 'sass-loader',
+        options: {
+          sourceMap: !isProd,
+          sourceComments: !isProd,
+          includePaths: [ baseDir ],
+          data: "@import 'assets/stylesheets/global';"
+        }
+      }
+    ]
   },
   {
     test: /\.(jpe?g|png|gif)$/i,
@@ -110,7 +108,7 @@ module.exports = (options) => {
   const rules = get(options, 'module.rules', []).concat(baseRules(options.modulesName));
 
   const plugins = get(options, 'plugins', []).concat([
-    new ExtractTextPlugin({
+    new MiniCssExtractPlugin({
       filename: variant ? `assets/${variant}_styles.css` : 'assets/styles.css',
       allChunks: true
     })
@@ -130,6 +128,7 @@ module.exports = (options) => {
   }
 
   return {
+    mode: isProd ? 'production' : development,
     entry: options.entry,
     output: options.output,
     externals: options.externals,
